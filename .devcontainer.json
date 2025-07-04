@@ -1,0 +1,7 @@
+{
+    "image": "mcr.microsoft.com/vscode/devcontainers/javascript-node:18",
+    "postCreateCommand": "npm install --legacy-peer-deps",
+    "forwardPorts": [
+        8000
+    ]
+}
