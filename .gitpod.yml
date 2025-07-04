@@ -1,8 +1,19 @@
+# .gitpod.yml
 image: mcr.microsoft.com/vscode/devcontainers/javascript-node:18
 
 tasks:
-  - init: npm install --legacy-peer-deps
-    command: npm run develop
+  - init: |
+      # 1) 필수 빌드툴 & Python 설치
+      sudo apt-get update
+      sudo apt-get install -y build-essential python3
+      # node-gyp 이 python 커맨드를 찾도록 링크
+      sudo ln -sf /usr/bin/python3 /usr/bin/python
+
+      # 2) npm 의존성 설치
+      npm install --legacy-peer-deps
+
+    # 개발 서버 자동 실행
+    command: npm run develop -- --host 0.0.0.0
 
 ports:
   - port: 8000
