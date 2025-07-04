@@ -1,3 +1,12 @@
+module.exports = {
+  flags: {
+    DEV_SSR: false
+  },
+  plugins: [
+    // …기존 플러그인
+  ],
+}
+
 const metaConfig = require('./gatsby-meta-config')
 
 module.exports = {
