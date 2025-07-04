@@ -1,18 +1,19 @@
-# .gitpod.yml
+# .gitpod.yml (프로젝트 루트에 덮어쓰기)
 image: mcr.microsoft.com/vscode/devcontainers/javascript-node:18
 
 tasks:
   - init: |
-      # 1) 필수 빌드툴 & Python 설치
+      # 1) 빌드 필수툴 & Python2 설치
       sudo apt-get update
-      sudo apt-get install -y build-essential python3
-      # node-gyp 이 python 커맨드를 찾도록 링크
-      sudo ln -sf /usr/bin/python3 /usr/bin/python
+      sudo apt-get install -y build-essential python2
 
-      # 2) npm 의존성 설치
+      # 2) node-gyp이 'python' 커맨드를 Python2로 쓰도록 심볼릭 링크
+      sudo ln -sf /usr/bin/python2 /usr/bin/python
+
+      # 3) 의존성 설치 (legacy-peer-deps)
       npm install --legacy-peer-deps
 
-    # 개발 서버 자동 실행
+    # 자동으로 개발 서버 실행, 외부에서 접근 가능하도록 호스트 지정
     command: npm run develop -- --host 0.0.0.0
 
 ports:
