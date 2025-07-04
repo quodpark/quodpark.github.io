@@ -1,15 +1,7 @@
-image: gitpod/workspace-full
+image: mcr.microsoft.com/vscode/devcontainers/javascript-node:18
 
 tasks:
-  - init: |
-      # 1) Python 2 설치 및 링크
-      sudo apt-get update
-      sudo apt-get install -y python2
-      sudo ln -sf /usr/bin/python2 /usr/bin/python
-
-      # 2) 의존성 설치 (legacy-peer-deps 포함)
-      npm install --legacy-peer-deps
-
+  - init: npm install --legacy-peer-deps
     command: npm run develop
 
 ports:
