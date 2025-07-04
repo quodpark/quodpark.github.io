@@ -3,17 +3,16 @@ image: mcr.microsoft.com/vscode/devcontainers/javascript-node:18
 
 tasks:
   - init: |
-      # 1) 빌드 필수툴 & Python2 설치
+      # 1) 빌드 필수툴 + Python2.7 설치
       sudo apt-get update
-      sudo apt-get install -y build-essential python2
+      sudo apt-get install -y build-essential python2.7-minimal python2-minimal
+      # node-gyp이 'python' 커맨드를 Python2로 쓰도록 링크
+      sudo ln -sf /usr/bin/python2.7 /usr/bin/python
 
-      # 2) node-gyp이 'python' 커맨드를 Python2로 쓰도록 심볼릭 링크
-      sudo ln -sf /usr/bin/python2 /usr/bin/python
-
-      # 3) 의존성 설치 (legacy-peer-deps)
+      # 2) 의존성 설치 (legacy-peer-deps)
       npm install --legacy-peer-deps
 
-    # 자동으로 개발 서버 실행, 외부에서 접근 가능하도록 호스트 지정
+    # 3) 개발 서버 자동 실행
     command: npm run develop -- --host 0.0.0.0
 
 ports:
